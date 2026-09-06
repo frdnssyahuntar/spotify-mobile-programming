@@ -23,12 +23,20 @@ class _HomePageState extends State<HomePage> {
       body: const Center(
         child: Text('tes'),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
+        child: BottomNavigationBar(
         backgroundColor: const Color(0xff121212),
         currentIndex: _selectedIndex,
         selectedItemColor: const Color(0xffffffff),
         unselectedItemColor: const Color(0xff757575),
         type: BottomNavigationBarType.fixed,
+        iconSize: 30,
+        selectedFontSize: 10,
+        unselectedFontSize: 10,
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
@@ -36,6 +44,7 @@ class _HomePageState extends State<HomePage> {
         },
         items: _navBarItems,
       ),
+      )
     );
   }
 }
@@ -49,7 +58,7 @@ const _navBarItems = [
   BottomNavigationBarItem(
     icon: Icon(Icons.search),
     activeIcon: Icon(Icons.search),
-    label: 'Search',
+    label: 'Cari',
   ),
   BottomNavigationBarItem(
     icon: Icon(Icons.library_music_outlined),
