@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify/search.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,20 +10,32 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+  
+  List<String> get _pageTitles => [
+    'Home',
+    'Cari',
+    'Koleksi Kamu',
+    'Buat',
+  ];
+
+  List<Widget> get _pages => [
+    const SizedBox(),
+    const SearchPage(),
+    const SizedBox(),
+    const SizedBox(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff121212),
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Text(_pageTitles[_selectedIndex]),
         backgroundColor: const Color(0xff121212),
         foregroundColor: const Color(0xffffffff),
         elevation: 0
       ),
-      body: const Center(
-        child: Text('tes'),
-      ),
+      body: _pages[_selectedIndex],
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
           splashColor: Colors.transparent,
