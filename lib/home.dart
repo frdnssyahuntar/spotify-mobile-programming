@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spotify/search.dart';
 import 'package:spotify/widgets/drawer_menu.dart';
 import 'package:spotify/widgets/category_grid.dart';
+import 'package:spotify/widgets/playlist_section.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,7 +23,18 @@ class _HomePageState extends State<HomePage> {
       ];
 
   List<Widget> get _pages => [
-        CategoryGrid(categories: _categories),
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              CategoryGrid(categories: _categories),
+              const SizedBox(height: 24),
+              PlaylistSection(
+                title: 'Playlist Kamu', 
+                playlists: _yourPlaylist,
+              ),
+            ],
+          ),
+        ),
         const SearchPage(),
         const SizedBox(),
         const SizedBox(),
@@ -88,6 +100,24 @@ const _categories = [
   {'name': 'Dangdut', 'icon': Icons.music_note},
   {'name': 'Indie', 'icon': Icons.music_note},
   {'name': 'R&B', 'icon': Icons.music_note},
+];
+
+const _yourPlaylist = [
+  {
+    'title': 'Playlist 1',
+    'subtitle': 'User',
+    'color': Colors.blueAccent,
+  },
+  {
+    'title': 'Playlist 2',
+    'subtitle': 'User',
+    'color': Colors.blueAccent,
+  },
+  {
+    'title': 'Playlist 3',
+    'subtitle': 'User',
+    'color': Colors.blueAccent,
+  }
 ];
 
 const _navBarItems = [
