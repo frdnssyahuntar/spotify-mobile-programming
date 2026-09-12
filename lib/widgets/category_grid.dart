@@ -19,7 +19,7 @@ class CategoryGrid extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 7.5,
           mainAxisSpacing: 7.5,
-          childAspectRatio: 4,
+          childAspectRatio: 3.9, 
         ),
         itemCount: categories.length,
         itemBuilder: (context, i) {
@@ -27,17 +27,26 @@ class CategoryGrid extends StatelessWidget {
           return Card(
             color: const Color(0xFF282828),
             margin: EdgeInsets.zero,
+            clipBehavior: Clip.antiAlias,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(c['icon'] as IconData?, color: Colors.white, size: 28),
-                  const SizedBox(width: 20),
-                  Text(
+            child: Row(
+              children: [
+                AspectRatio(
+                  aspectRatio: 1.0,
+                  child: Container(
+                    color: c['color'] as Color? ?? Colors.grey[800],
+                    child: const Icon(
+                      Icons.music_note,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
                     c['name'] as String,
                     style: const TextStyle(
                       color: Colors.white,
@@ -46,8 +55,8 @@ class CategoryGrid extends StatelessWidget {
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },
